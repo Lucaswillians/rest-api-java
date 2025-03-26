@@ -22,11 +22,21 @@ import med.voll.api.endereco.Endereco;
 @EqualsAndHashCode(of = "id")
 public class Medico {
 
+    public Medico(doctorsPostData data) {
+      this.nome = data.nome();
+      this.email = data.email();
+      this.crm = data.crm();
+      this.telefone = data.telefone();
+      this.especialidade = data.especialidade();
+      this.endereco = new Endereco(data.endereco());
+  }
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String crm;
+    private String telefone;
 
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
