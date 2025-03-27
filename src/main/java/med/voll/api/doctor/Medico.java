@@ -23,6 +23,7 @@ import med.voll.api.endereco.Endereco;
 public class Medico {
 
     public Medico(doctorsPostData data) {
+      this.ativo = true;
       this.nome = data.nome();
       this.email = data.email();
       this.crm = data.crm();
@@ -44,4 +45,15 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    private boolean ativo;
+
+    public void atualizarInformacoes(doctorUpdateData data) {
+    if (data.nome() != null) this.nome = data.nome();
+    if (data.telefone() != null) this.telefone = data.telefone();
+    if (data.endereco() != null) this.endereco = new Endereco(data.endereco());
+  }
+
+    public void excluir() {
+      this.ativo = false;
+    }
 }
